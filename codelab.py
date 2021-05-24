@@ -1,53 +1,3 @@
-Skip to content
-Search or jump to…
-
-Pull requests
-Issues
-Marketplace
-Explore
- 
-@miao4428 
-tensorflow
-/
-lingvo
-110
-2.2k358
-Code
-Issues
-85
-Pull requests
-Actions
-Projects
-Wiki
-Security
-Insights
-lingvo/lingvo/tasks/punctuator/params/codelab.py /
-@jonathanasdf
-jonathanasdf Python3 only cleanup.
-…
-Latest commit 3c5ef88 on 8 Jul 2020
- History
- 3 contributors
-@jonathanasdf@ronw@lingvo-bot
-125 lines (109 sloc)  4.91 KB
-  
-# Lint as: python3
-# Copyright 2018 The TensorFlow Authors. All Rights Reserved.
-#
-# Licensed under the Apache License, Version 2.0 (the "License");
-# you may not use this file except in compliance with the License.
-# You may obtain a copy of the License at
-#
-#     http://www.apache.org/licenses/LICENSE-2.0
-#
-# Unless required by applicable law or agreed to in writing, software
-# distributed under the License is distributed on an "AS IS" BASIS,
-# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-# See the License for the specific language governing permissions and
-# limitations under the License.
-# ==============================================================================
-"""Params file for punctuator codelab."""
-
 import os
 from lingvo import model_registry
 import lingvo.compat as tf
@@ -59,7 +9,7 @@ from lingvo.tasks.punctuator import model
 
 # This base class defines parameters for the input generator for a specific
 # dataset. Specific network architectures will be implemented in subclasses.
-class BrownCorpusWPM(base_model_params.SingleTaskModelParams):
+class RNMTModel(base_model_params.SingleTaskModelParams):
   """Brown Corpus data with a Word-Piece Model tokenizer."""
 
   # Generated using
@@ -124,14 +74,6 @@ class BrownCorpusWPM(base_model_params.SingleTaskModelParams):
     p.target_max_length = p.bucket_upper_bound[-1] + 2
     return p
 
-
-# This decorator registers the model in the Lingvo model registry.
-# This file is lingvo/tasks/punctuator/params/codelab.py,
-# so the model will be registered as punctuator.codelab.RNMTModel.
-@model_registry.RegisterSingleTaskModel
-class RNMTModel(BrownCorpusWPM):
-  """RNMT+ Model."""
-
   def Task(self):
     p = base_config.SetupRNMTParams(
         model.RNMTModel.Params(),
@@ -156,15 +98,3 @@ class RNMTModel(BrownCorpusWPM):
     )
     p.eval.samples_per_summary = 2466
     return p
-© 2021 GitHub, Inc.
-Terms
-Privacy
-Security
-Status
-Docs
-Contact GitHub
-Pricing
-API
-Training
-Blog
-About
